@@ -15,8 +15,11 @@ body {
 }
 
 .container {
-    background-color: rgba(20, 105, 51, 0.226);
+    background-color: rgba(32, 161, 193, 0.749);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0,)
+}
+.respuesta{
+    border-radius: 2px solid black;
 }
