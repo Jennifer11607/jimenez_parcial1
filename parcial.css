@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family:'Courier New', Courier, monospace;
     background-image: url(./pexels-quang-nguyen-vinh-222549-2171548.jpg);
     display: flex;
     justify-content: center;
@@ -12,13 +12,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .container {
-    background-color: rgba(32, 161, 193, 0.749);
+    background-color: rgba(218, 158, 27, 0.797);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0,)
+    
 }
 .respuesta{
     border-radius: 2px solid black;

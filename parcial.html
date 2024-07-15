@@ -3,26 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Tareas</title>
+    <title>EXAMEN PARCIAL</title>
     <link rel="stylesheet" href="parcial.css">
 </head>
 <body>
     <div class="container">
-        <h1>INGRESAR TAREAS</h1>
-        <form id="taskForm">
-            <label for="">Nombre</label>
-            <input type="text" id="nombrea" placeholder="Escriba su nombre" required>
+        <h1>Lista de Tareas</h1>
+        <form id="formularioTarea">
             <label for="">Tarea</label>
             <input type="text" id="nombreTarea" placeholder="Nombre de la tarea" required>
-            <label for="">Tiempo</label>
-            <input type="number" id="tiempoTarea" placeholder="Tiempo(horas)" required>
-            <button type="submit">Terminar Tarea</button>
+            <label for="">Tarea</label>
+            <input type="number" id="tiempoTarea" placeholder="Tiempo (horas)" required>
+            <button type="submit">Añadir Tarea</button>
         </form>
 
         <h3>Lista de Tareas Realizadas</h3>
-            <ul id="taskList"></ul>
-        <p id="totalTime">Tiempo Total Invertido: 0 horas</p>
+        <ul id="listaTareas"></ul>
+        <p id="tiempoTotal">Tiempo Total Invertido: 0 horas</p>
     </div>
     <script src="parcial.js"></script>
 </body>
 </html>
+
+
+
+
+
+

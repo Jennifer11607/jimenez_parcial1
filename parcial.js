@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateTotalTime() {
-        totalTimeDisplay.textContent = `Tiempo Total Invertido: ${totalTime} hora`;
+        totalTimeDisplay.textContent = `Tiempo Total Invertido: ${totalTime} horas`;
     }
 
     function showAlert(message) {
