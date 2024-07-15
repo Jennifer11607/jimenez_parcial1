@@ -6,18 +6,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     taskForm.addEventListener('submit', function(event) {
         event.preventDefault();
-        const taskName = document.getElementById('taskName').value;
-        const taskTime = parseInt(document.getElementById('taskTime').value);
+        const nombreTarea = document.getElementById('nombreTarea').value;
+        const tiempoTarea = parseInt(document.getElementById('tiempoTarea').value);
         
-        addTask(taskName, taskTime);
+        addTask(nombreTarea, tiempoTarea);
         taskForm.reset();
         showAlert('Tarea agregada correctamente.');
     });
 
-    function addTask(name, time) {
+    function addTask(nombre, tiempo) {
         const li = document.createElement('li');
         li.innerHTML = `
-            <span class="task-name">${name}</span> - <span class="task-time">${time}</span> horas
+            <span class="nombre-tarea">${nombre}</span> - <span class="tiempo-tarea">${tiempo}</span> horas
             <div>
                 <button class="complete">Completa</button>
                 <button class="incomplete">Incompleta</button>
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         completeButton.addEventListener('click', function() {
             if (!li.classList.contains('completed')) {
                 li.classList.add('completed');
-                totalTime += time;
+                totalTime += tiempo;
                 updateTotalTime();
                 showAlert('Tarea marcada como completada.');
             }
@@ -39,39 +39,39 @@ document.addEventListener('DOMContentLoaded', function() {
         incompleteButton.addEventListener('click', function() {
             if (li.classList.contains('completed')) {
                 li.classList.remove('completed');
-                totalTime -= time;
+                totalTime -= tiempo;
                 updateTotalTime();
                 showAlert('Tarea marcada como incompleta.');
 
-                const taskNameSpan = li.querySelector('.task-name');
-                const taskTimeSpan = li.querySelector('.task-time');
+                const nombreTareaSpan = li.querySelector('.nombre-tarea');
+                const tiempoTareaSpan = li.querySelector('.tiempo-tarea');
 
-                const taskNameInput = document.createElement('input');
-                taskNameInput.type = 'text';
-                taskNameInput.value = taskNameSpan.textContent;
-                taskNameInput.className = 'edit-task-name';
+                const nombreTareaInput = document.createElement('input');
+                nombreTareaInput.type = 'text';
+                nombreTareaInput.value = nombreTareaSpan.textContent;
+                nombreTareaInput.className = 'edit-nombre-tarea';
 
-                const taskTimeInput = document.createElement('input');
-                taskTimeInput.type = 'number';
-                taskTimeInput.value = taskTimeSpan.textContent;
-                taskTimeInput.className = 'edit-task-time';
+                const tiempoTareaInput = document.createElement('input');
+                tiempoTareaInput.type = 'number';
+                tiempoTareaInput.value = tiempoTareaSpan.textContent;
+                tiempoTareaInput.className = 'edit-tiempo-tarea';
 
-                taskNameSpan.replaceWith(taskNameInput);
-                taskTimeSpan.replaceWith(taskTimeInput);
+                nombreTareaSpan.replaceWith(nombreTareaInput);
+                tiempoTareaSpan.replaceWith(tiempoTareaInput);
 
                 incompleteButton.textContent = 'Guardar';
                 incompleteButton.classList.remove('incomplete');
                 incompleteButton.classList.add('save');
 
                 incompleteButton.addEventListener('click', function() {
-                    const newTaskName = taskNameInput.value;
-                    const newTaskTime = parseInt(taskTimeInput.value);
+                    const nuevoNombreTarea = nombreTareaInput.value;
+                    const nuevoTiempoTarea = parseInt(tiempoTareaInput.value);
 
-                    taskNameInput.replaceWith(taskNameSpan);
-                    taskTimeInput.replaceWith(taskTimeSpan);
+                    nombreTareaInput.replaceWith(nombreTareaSpan);
+                    tiempoTareaInput.replaceWith(tiempoTareaSpan);
 
-                    taskNameSpan.textContent = newTaskName;
-                    taskTimeSpan.textContent = newTaskTime;
+                    nombreTareaSpan.textContent = nuevoNombreTarea;
+                    tiempoTareaSpan.textContent = nuevoTiempoTarea;
 
                     incompleteButton.textContent = 'Incompleta';
                     incompleteButton.classList.remove('save');
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateTotalTime() {
-        totalTimeDisplay.textContent = `Tiempo Total Invertido: ${totalTime} horas`;
+        totalTimeDisplay.textContent = `Tiempo Total Invertido: ${totalTime} hora`;
     }
 
     function showAlert(message) {
