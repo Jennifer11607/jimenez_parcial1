@@ -1,15 +1,21 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-image: url(./pexels-quang-nguyen-vinh-222549-2171548.jpg);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
-    background: white;
+    background-color: rgba(20, 105, 51, 0.226);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0,)
