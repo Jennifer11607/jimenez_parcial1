@@ -1,47 +1,47 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const taskForm = document.getElementById('taskForm');
-    const taskList = document.getElementById('taskList');
-    const totalTimeDisplay = document.getElementById('totalTime');
-    let totalTime = 0;
+    const formularioTarea = document.getElementById('formularioTarea');
+    const listaTareas = document.getElementById('listaTareas');
+    const tiempoTotalDisplay = document.getElementById('tiempoTotal');
+    let tiempoTotal = 0;
 
-    taskForm.addEventListener('submit', function(event) {
+    formularioTarea.addEventListener('submit', function(event) {
         event.preventDefault();
         const nombreTarea = document.getElementById('nombreTarea').value;
         const tiempoTarea = parseInt(document.getElementById('tiempoTarea').value);
         
-        addTask(nombreTarea, tiempoTarea);
-        taskForm.reset();
-        showAlert('Tarea agregada correctamente.');
+        agregarTarea(nombreTarea, tiempoTarea);
+        formularioTarea.reset();
+        mostrarAlerta('Tarea agregada correctamente.');
     });
 
-    function addTask(nombre, tiempo) {
+    function agregarTarea(nombre, tiempo) {
         const li = document.createElement('li');
         li.innerHTML = `
             <span class="nombre-tarea">${nombre}</span> - <span class="tiempo-tarea">${tiempo}</span> horas
             <div>
-                <button class="complete">Completa</button>
-                <button class="incomplete">Incompleta</button>
+                <button class="completar">Completar</button>
+                <button class="incompleta">Incompleta</button>
             </div>
         `;
 
-        const completeButton = li.querySelector('.complete');
-        const incompleteButton = li.querySelector('.incomplete');
+        const botonCompletar = li.querySelector('.completar');
+        const botonIncompleta = li.querySelector('.incompleta');
 
-        completeButton.addEventListener('click', function() {
-            if (!li.classList.contains('completed')) {
-                li.classList.add('completed');
-                totalTime += tiempo;
-                updateTotalTime();
-                showAlert('Tarea marcada como completada.');
+        botonCompletar.addEventListener('click', function() {
+            if (!li.classList.contains('completada')) {
+                li.classList.add('completada');
+                tiempoTotal += tiempo;
+                actualizarTiempoTotal();
+                mostrarAlerta('Tarea marcada como completada.');
             }
         });
 
-        incompleteButton.addEventListener('click', function() {
-            if (li.classList.contains('completed')) {
-                li.classList.remove('completed');
-                totalTime -= tiempo;
-                updateTotalTime();
-                showAlert('Tarea marcada como incompleta.');
+        botonIncompleta.addEventListener('click', function() {
+            if (li.classList.contains('completada')) {
+                li.classList.remove('completada');
+                tiempoTotal -= tiempo;
+                actualizarTiempoTotal();
+                mostrarAlerta('Tarea marcada como incompleta.');
 
                 const nombreTareaSpan = li.querySelector('.nombre-tarea');
                 const tiempoTareaSpan = li.querySelector('.tiempo-tarea');
@@ -49,21 +49,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 const nombreTareaInput = document.createElement('input');
                 nombreTareaInput.type = 'text';
                 nombreTareaInput.value = nombreTareaSpan.textContent;
-                nombreTareaInput.className = 'edit-nombre-tarea';
+                nombreTareaInput.className = 'editar-nombre-tarea';
 
                 const tiempoTareaInput = document.createElement('input');
                 tiempoTareaInput.type = 'number';
                 tiempoTareaInput.value = tiempoTareaSpan.textContent;
-                tiempoTareaInput.className = 'edit-tiempo-tarea';
+                tiempoTareaInput.className = 'editar-tiempo-tarea';
 
                 nombreTareaSpan.replaceWith(nombreTareaInput);
                 tiempoTareaSpan.replaceWith(tiempoTareaInput);
 
-                incompleteButton.textContent = 'Guardar';
-                incompleteButton.classList.remove('incomplete');
-                incompleteButton.classList.add('save');
+                botonIncompleta.textContent = 'Guardar';
+                botonIncompleta.classList.remove('incompleta');
+                botonIncompleta.classList.add('guardar');
 
-                incompleteButton.addEventListener('click', function() {
+                botonIncompleta.addEventListener('click', function() {
                     const nuevoNombreTarea = nombreTareaInput.value;
                     const nuevoTiempoTarea = parseInt(tiempoTareaInput.value);
 
@@ -73,27 +73,27 @@ document.addEventListener('DOMContentLoaded', function() {
                     nombreTareaSpan.textContent = nuevoNombreTarea;
                     tiempoTareaSpan.textContent = nuevoTiempoTarea;
 
-                    incompleteButton.textContent = 'Incompleta';
-                    incompleteButton.classList.remove('save');
-                    incompleteButton.classList.add('incomplete');
+                    botonIncompleta.textContent = 'Incompleta';
+                    botonIncompleta.classList.remove('guardar');
+                    botonIncompleta.classList.add('incompleta');
 
-                    showAlert('Tarea editada correctamente.');
+                    mostrarAlerta('Tarea editada correctamente.');
                 }, { once: true });
             }
         });
 
-        taskList.appendChild(li);
+        listaTareas.appendChild(li);
     }
 
-    function updateTotalTime() {
-        totalTimeDisplay.textContent = `Tiempo Total Invertido: ${totalTime} horas`;
+    function actualizarTiempoTotal() {
+        tiempoTotalDisplay.textContent = `Tiempo Total Invertido: ${tiempoTotal} horas`;
     }
 
-    function showAlert(message) {
-        const alertDiv = document.createElement('div');
-        alertDiv.className = 'alert';
-        alertDiv.textContent = message;
-        document.body.appendChild(alertDiv);
-        setTimeout(() => alertDiv.remove(), 3000);
+    function mostrarAlerta(mensaje) {
+        const alertaDiv = document.createElement('div');
+        alertaDiv.className = 'alerta';
+        alertaDiv.textContent = mensaje;
+        document.body.appendChild(alertaDiv);
+        setTimeout(() => alertaDiv.remove(), 3000);
     }
 });
